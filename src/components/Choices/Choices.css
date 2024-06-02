@@ -1,0 +1,88 @@
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  place-items: center;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.choices::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("../../assets/images/bg-triangle.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 313px;
+  height: 278px;
+  z-index: -1;
+}
+
+.choice-container {
+  position: relative;
+  display: inline-block;
+}
+
+.choice-container::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border-radius: 50%;
+  z-index: -1;
+  box-shadow: inset 0 -9px 0px -3px rgba(0, 0, 0, 0.2);
+}
+
+.choice-container.rock::before {
+  background-image: var(--rock-gradient);
+}
+
+.choice-container.paper::before {
+  background-image: var(--paper-gradient);
+}
+
+.choice-container.scissors::before {
+  background-image: var(--scissors-gradient);
+}
+
+.choice {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  box-shadow: inset 0 6px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.choice-container:hover .choice {
+  transform: scale(1.05);
+}
+
+.choice-container.paper {
+  transform: translate(-20px, 10px);
+}
+
+.choice-container.scissors {
+  transform: translate(10px, 10px);
+}
+
+.choice-container.rock {
+  transform: translate(90px, 10px);
+}
+
+.choice img {
+  width: 40%;
+  height: auto;
+}

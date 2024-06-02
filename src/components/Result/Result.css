@@ -1,0 +1,110 @@
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+  width: 100%;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.result-container {
+  position: relative;
+  display: inline-block;
+}
+
+.result-container::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border-radius: 50%;
+  z-index: -1;
+  box-shadow: inset 0 -9px 0px -3px rgba(0, 0, 0, 0.2);
+}
+
+.result-container.rock::before {
+  background-image: var(--rock-gradient);
+}
+
+.result-container.paper::before {
+  background-image: var(--paper-gradient);
+}
+
+.result-container.scissors::before {
+  background-image: var(--scissors-gradient);
+}
+
+.outcome-text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.outcome-text > h2 {
+  font-size: 2rem;
+  margin-bottom: 2em;
+}
+
+.play-again-btn {
+  border-radius: 5px;
+  background: white;
+  border: none;
+  box-shadow: inset 0 6px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+/* .outcome {
+  text-align: center;
+}
+
+.outcome h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.outcome button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+} */
+
+/* .ripple {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  background: #ffffff85;
+  animation: ripple 1s ease-out;
+}
+
+.choice-container.ripple {
+  animation: ripple 0.6s linear;
+  opacity: 1;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+} */
