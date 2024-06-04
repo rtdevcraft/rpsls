@@ -6,12 +6,16 @@ import RulesModal from "../Rules/Rules";
 import rockIcon from "../../assets/images/icon-rock.svg";
 import paperIcon from "../../assets/images/icon-paper.svg";
 import scissorsIcon from "../../assets/images/icon-scissors.svg";
-import logo from "../../assets/images/logo.svg";
+import lizardIcon from "../../assets/images/icon-lizard.svg";
+import spockIcon from "../../assets/images/icon-spock.svg";
+import logo from "../../assets/images/logo-bonus.svg";
 
 const choices = [
-  { id: 1, name: "paper", icon: paperIcon },
-  { id: 2, name: "scissors", icon: scissorsIcon },
+  { id: 1, name: "scissors", icon: scissorsIcon },
+  { id: 2, name: "paper", icon: paperIcon },
   { id: 3, name: "rock", icon: rockIcon },
+  { id: 4, name: "lizard", icon: lizardIcon },
+  { id: 5, name: "spock", icon: spockIcon },
 ];
 
 const Game = () => {
@@ -43,9 +47,16 @@ const Game = () => {
     }
 
     if (
-      (userChoice === "rock" && computerChoice === "scissors") ||
-      (userChoice === "scissors" && computerChoice === "paper") ||
-      (userChoice === "paper" && computerChoice === "rock")
+      (userChoice === "rock" &&
+        (computerChoice === "scissors" || computerChoice === "lizard")) ||
+      (userChoice === "paper" &&
+        (computerChoice === "rock" || computerChoice === "spock")) ||
+      (userChoice === "scissors" &&
+        (computerChoice === "paper" || computerChoice === "lizard")) ||
+      (userChoice === "lizard" &&
+        (computerChoice === "paper" || computerChoice === "spock")) ||
+      (userChoice === "spock" &&
+        (computerChoice === "scissors" || computerChoice === "rock"))
     ) {
       return "You win";
     } else {

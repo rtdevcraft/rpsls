@@ -18,6 +18,11 @@
   display: flex;
   flex-direction: column;
   gap: 10em;
+  width: 100%;
+}
+
+.modal-content img {
+  width: 90%;
 }
 
 .modal-content > h2 {

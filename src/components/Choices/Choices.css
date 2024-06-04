@@ -1,10 +1,11 @@
 .choices {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
   place-items: center;
   max-width: 300px;
   margin: 0 auto;
+  position: relative;
 }
 
 .choices::before {
@@ -13,12 +14,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url("../../assets/images/bg-triangle.svg");
+  background-image: url("../../assets/images/bg-pentagon.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  width: 313px;
-  height: 278px;
+  width: 329px;
+  height: 313px;
   z-index: -1;
+  width: 80%;
 }
 
 .choice-container {
@@ -49,10 +51,17 @@
 .choice-container.scissors::before {
   background-image: var(--scissors-gradient);
 }
+.choice-container.lizard::before {
+  background-image: var(--lizard-gradient);
+}
+
+.choice-container.spock::before {
+  background-image: var(--spock-gradient);
+}
 
 .choice {
-  width: 110px;
-  height: 110px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background: white;
   border: none;
@@ -70,19 +79,38 @@
   transform: scale(1.05);
 }
 
-.choice-container.paper {
-  transform: translate(-20px, -10px);
+.choice-container.scissors {
+  top: -90px;
+  left: 110px;
 }
 
-.choice-container.scissors {
-  transform: translate(10px, -10px);
+.choice-container.paper {
+  top: 0;
+  left: 110px;
 }
 
 .choice-container.rock {
-  transform: translate(90px, 10px);
+  top: 130px;
+  left: -60px;
+}
+
+.choice-container.lizard {
+  top: 10px;
+  left: 40px;
+}
+
+.choice-container.spock {
+  top: -120px;
+  left: -120px;
 }
 
 .choice img {
   width: 40%;
-  height: auto;
+}
+
+/* TO EQUALIZE SIZE OF IMAGES */
+
+.choice-container.lizard .choice img,
+.choice-container.scissors .choice img {
+  width: 50%;
 }

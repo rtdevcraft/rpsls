@@ -1,6 +1,6 @@
 import React from "react";
 import "./Rules.css";
-import rulesImage from "../../assets/images/image-rules.svg";
+import rulesImage from "../../assets/images/image-rules-bonus.svg";
 
 const RulesModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
