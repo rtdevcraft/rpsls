@@ -1,54 +1,84 @@
 import React, { useState, useEffect } from "react";
 import "./Result.css";
 
-const Result = ({ userChoice, computerChoice, result, score, onPlayAgain }) => {
+const Result = ({
+  userChoice,
+  computerChoice,
+  result,
+  onPlayAgain,
+  updateScore,
+}) => {
   const [choicesRevealed, setChoicesRevealed] = useState(false);
+  const [outcomeRevealed, setOutcomeRevealed] = useState(false);
+  const [rippleActive, setRippleActive] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const choicesTimer = setTimeout(() => {
       setChoicesRevealed(true);
     }, 1000);
 
-    return () => clearTimeout(timer);
-  }, [userChoice, computerChoice]);
+    const outcomeTimer = setTimeout(() => {
+      setOutcomeRevealed(true);
+    }, 2000);
+
+    const rippleTimer = setTimeout(() => {
+      setRippleActive(true);
+    }, 2500);
+
+    return () => {
+      clearTimeout(choicesTimer);
+      clearTimeout(outcomeTimer);
+      clearTimeout(rippleTimer);
+    };
+  }, [userChoice, computerChoice, result]);
 
   const { name: userName, icon: userIcon } = userChoice;
   const { name: computerName, icon: computerIcon } = computerChoice;
 
-  const isWinner = result === "You win!" || result === "Computer wins!";
+  const isWinner = result === "You win";
+  const isLoser = result === "You lose";
 
   return (
     <section className="result">
       <div className="user-result">
         <div
           className={`result-container ${userName} ${
-            isWinner ? "ripple" : ""
+            isWinner && choicesRevealed ? "reveal-ripple" : ""
           } ${choicesRevealed ? "show" : ""}`}
         >
-          <div className={`choice ${userName}`}>
+          <div className={`choice-result ${userName}`}>
             <img src={userIcon} alt={userName} />
           </div>
         </div>
         <h3>You Picked</h3>
       </div>
-      <div className="computer-result">
+      <div
+        className={`computer-result show-placeholder ${
+          choicesRevealed ? "show" : ""
+        }`}
+      >
         <div
           className={`result-container ${computerName} ${
-            isWinner ? "ripple" : ""
-          } ${choicesRevealed ? "show" : ""}`}
+            isLoser && choicesRevealed ? "reveal-ripple" : ""
+          }`}
         >
-          <div className={`choice ${computerName}`}>
+          <div className={`choice-result ${computerName}`}>
             <img src={computerIcon} alt={computerName} />
           </div>
         </div>
         <h3>The House Picked</h3>
       </div>
+
       {choicesRevealed && (
-        <div className="outcome-text">
-          <h2>{result}</h2>
-          <button className="play-again-btn" onClick={onPlayAgain}>
-            Play Again
-          </button>
+        <div className="outcome-container">
+          {outcomeRevealed && (
+            <div className="outcome-text">
+              <h2>{result}</h2>
+              <button className="play-again-btn" onClick={onPlayAgain}>
+                Play Again
+              </button>
+            </div>
+          )}
         </div>
       )}
     </section>

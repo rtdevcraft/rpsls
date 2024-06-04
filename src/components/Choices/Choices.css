@@ -71,11 +71,11 @@
 }
 
 .choice-container.paper {
-  transform: translate(-20px, 10px);
+  transform: translate(-20px, -10px);
 }
 
 .choice-container.scissors {
-  transform: translate(10px, 10px);
+  transform: translate(10px, -10px);
 }
 
 .choice-container.rock {

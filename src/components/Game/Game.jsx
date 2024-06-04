@@ -29,7 +29,6 @@ const Game = () => {
     setUserChoice(choice);
     setComputerChoice(computerChoice);
     setResult(gameResult);
-    updateScore(gameResult);
     setShowChoices(false);
   };
 
@@ -40,7 +39,7 @@ const Game = () => {
 
   const determineResult = (userChoice, computerChoice) => {
     if (userChoice === computerChoice) {
-      return "It's a tie!";
+      return "It's a tie";
     }
 
     if (
@@ -48,22 +47,23 @@ const Game = () => {
       (userChoice === "scissors" && computerChoice === "paper") ||
       (userChoice === "paper" && computerChoice === "rock")
     ) {
-      return "You win!";
+      return "You win";
     } else {
-      return "Computer wins!";
+      return "You lose";
     }
   };
 
   const updateScore = (result) => {
-    if (result === "You win!") {
+    if (result === "You win") {
       setScore((prevScore) => ({
         ...prevScore,
         user: prevScore.user + 1,
       }));
-    } else if (result === "Computer wins!") {
+    } else if (result === "You lose") {
       setScore((prevScore) => ({
         ...prevScore,
         computer: prevScore.computer + 1,
+        user: prevScore.user - 1,
       }));
     }
   };
@@ -73,6 +73,7 @@ const Game = () => {
   };
 
   const handlePlayAgain = () => {
+    updateScore(result);
     setUserChoice(null);
     setComputerChoice(null);
     setResult(null);
@@ -99,8 +100,8 @@ const Game = () => {
               userChoice={userChoice}
               computerChoice={computerChoice}
               result={result}
-              score={score}
               onPlayAgain={handlePlayAgain}
+              updateScore={updateScore}
             />
           )}
         </section>
