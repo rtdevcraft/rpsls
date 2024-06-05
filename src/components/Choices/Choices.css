@@ -6,6 +6,7 @@
   max-width: 300px;
   margin: 0 auto;
   position: relative;
+  transition: opacity 0.5s ease;
 }
 
 .choices::before {
@@ -25,7 +26,6 @@
 
 .choice-container {
   position: relative;
-  display: inline-block;
 }
 
 .choice-container::before {
@@ -60,8 +60,8 @@
 }
 
 .choice {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: white;
   border: none;
@@ -100,8 +100,8 @@
 }
 
 .choice-container.spock {
-  top: -120px;
-  left: -120px;
+  top: -130px;
+  left: -140px;
 }
 
 .choice img {
@@ -113,4 +113,41 @@
 .choice-container.lizard .choice img,
 .choice-container.scissors .choice img {
   width: 50%;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 500px) {
+  .choices::before {
+    width: 329px;
+  }
+
+  .choice {
+    width: 110px;
+    height: 110px;
+  }
+
+  .choice-container.scissors {
+    top: -90px;
+    left: 100px;
+  }
+
+  .choice-container.paper {
+    top: 40px;
+    left: 110px;
+  }
+
+  .choice-container.rock {
+    top: 225px;
+    left: -110px;
+  }
+
+  .choice-container.lizard {
+    top: 70px;
+    left: -10px;
+  }
+
+  .choice-container.spock {
+    top: -115px;
+    left: -220px;
+  }
 }

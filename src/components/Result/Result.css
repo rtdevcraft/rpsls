@@ -15,11 +15,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .result-container {
   position: relative;
-  display: inline-block;
   width: 80px;
   height: 80px;
   transition: transform 0.5s ease, opacity 0.5s ease;
@@ -64,7 +64,6 @@
   background: white;
   border: none;
   box-shadow: inset 0 6px 0 rgba(0, 0, 0, 0.2);
-  cursor: pointer;
   display: flex;
   position: relative;
   z-index: 1;
@@ -97,25 +96,24 @@
 
 .computer-result .result-container {
   opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .computer-result.show .result-container {
   opacity: 1;
-  transform: scale(1);
 }
 
 .computer-result.show-placeholder::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 66%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
   width: 80px;
   height: 80px;
   background-color: #192845;
   border-radius: 50%;
-  margin-bottom: 1em;
+  z-index: -1;
 }
 
 .outcome-container {
@@ -124,7 +122,12 @@
   align-items: center;
   width: 100%;
   margin-top: 2em;
+  opacity: 0;
   transition: opacity 0.5s ease;
+}
+
+.outcome-container.show {
+  opacity: 1;
 }
 
 .outcome-text {
@@ -155,15 +158,23 @@
   z-index: 1;
   align-items: center;
   justify-content: center;
-  padding: 0.5em 2em;
-  width: 100%;
+  padding: 1em 2em;
   margin: 0 auto;
   transition: transform 0.2s;
   text-transform: uppercase;
   font-weight: 500;
   font-family: "Barlow Semi Condensed", sans-serif;
   letter-spacing: 1px;
-  font-size: 0.8rem;
+  font-size: 1rem;
+}
+
+.play-again-btn:hover,
+.play-again-btn:focus {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  color: #fff;
+  transition: opacity 0.5s ease;
+  border: 1px solid #fff;
 }
 
 .result-container::after {
@@ -195,5 +206,53 @@
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 0 0 0 rgba(255, 255, 255, 0),
       0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 500px) {
+  .result {
+    justify-content: space-around;
+  }
+
+  .result-container {
+    width: 110px;
+    height: 110px;
+  }
+  .choice-result {
+    width: 110px;
+    height: 110px;
+  }
+
+  .result .user-result > h3,
+  .result .computer-result > h3 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .computer-result.show-placeholder::before {
+    width: 110px;
+    height: 110px;
+    transform: translate(-50%, -80%);
+  }
+
+  .play-again-btn {
+    width: 70%;
+  }
+
+  @keyframes ripple {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
+        0 0 0 0 rgba(255, 255, 255, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.3);
+    }
+    80% {
+      box-shadow: 0 0 0 70px rgba(255, 255, 255, 0),
+        0 0 0 90px rgba(255, 255, 255, 0), 0 0 0 110px rgba(255, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 0 0 0 rgba(255, 255, 255, 0),
+        0 0 0 0 rgba(255, 255, 255, 0);
+    }
   }
 }

@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from "react";
 import "./Result.css";
 
-const Result = ({
-  userChoice,
-  computerChoice,
-  result,
-  onPlayAgain,
-  updateScore,
-}) => {
-  const [choicesRevealed, setChoicesRevealed] = useState(false);
-  const [outcomeRevealed, setOutcomeRevealed] = useState(false);
-  const [rippleActive, setRippleActive] = useState(false);
+const Result = ({ userChoice, computerChoice, result, onPlayAgain }) => {
+  const [revealState, setRevealState] = useState({
+    choicesRevealed: false,
+    outcomeRevealed: false,
+    rippleActive: false,
+  });
 
   useEffect(() => {
     const choicesTimer = setTimeout(() => {
-      setChoicesRevealed(true);
+      setRevealState((prevState) => ({
+        ...prevState,
+        choicesRevealed: true,
+      }));
     }, 1000);
 
     const outcomeTimer = setTimeout(() => {
-      setOutcomeRevealed(true);
+      setRevealState((prevState) => ({
+        ...prevState,
+        outcomeRevealed: true,
+      }));
     }, 2000);
 
     const rippleTimer = setTimeout(() => {
-      setRippleActive(true);
+      setRevealState((prevState) => ({
+        ...prevState,
+        rippleActive: true,
+      }));
     }, 2500);
 
     return () => {
@@ -32,6 +37,7 @@ const Result = ({
     };
   }, [userChoice, computerChoice, result]);
 
+  const { choicesRevealed, outcomeRevealed, rippleActive } = revealState;
   const { name: userName, icon: userIcon } = userChoice;
   const { name: computerName, icon: computerIcon } = computerChoice;
 
@@ -70,15 +76,13 @@ const Result = ({
       </div>
 
       {choicesRevealed && (
-        <div className="outcome-container">
-          {outcomeRevealed && (
-            <div className="outcome-text">
-              <h2>{result}</h2>
-              <button className="play-again-btn" onClick={onPlayAgain}>
-                Play Again
-              </button>
-            </div>
-          )}
+        <div className={`outcome-container ${outcomeRevealed ? "show" : ""}`}>
+          <div className="outcome-text">
+            <h2>{result}</h2>
+            <button className="play-again-btn" onClick={onPlayAgain}>
+              Play Again
+            </button>
+          </div>
         </div>
       )}
     </section>
