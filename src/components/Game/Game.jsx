@@ -174,7 +174,7 @@ const Game = () => {
           />
           <section className="score-container">
             <article className="score-board">
-              <h1 className="score-title">Score</h1>
+              <p className="score-title">Score</p>
               <p className="score" aria-live="polite">
                 {score.user}
               </p>
